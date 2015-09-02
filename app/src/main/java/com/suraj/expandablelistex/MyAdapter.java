@@ -20,6 +20,7 @@ import java.util.List;
 public class MyAdapter extends BaseExpandableListAdapter  {
 
     private Context _context;
+    //maintain count
     private static int count=1;
     private List<String> _listDataHeader;
 
