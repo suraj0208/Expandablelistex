@@ -1,6 +1,7 @@
 package com.suraj.expandablelistex;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -8,7 +9,6 @@ import android.widget.BaseExpandableListAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.HashMap;
 import java.util.List;
@@ -20,6 +20,7 @@ import java.util.List;
 public class MyAdapter extends BaseExpandableListAdapter  {
 
     private Context _context;
+    private static int count=1;
     private List<String> _listDataHeader;
 
     public MyAdapter(Context context, List<String> listDataHeader,
@@ -63,7 +64,11 @@ public class MyAdapter extends BaseExpandableListAdapter  {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(_context.getApplicationContext(), "clicked:" + tvdisp.getText(),Toast.LENGTH_SHORT).show();
+                //_context.startActivity(new Intent(_context,MainActivity.class));
+                count++;
+                MyAdapter.this.notifyDataSetChanged();
+                MyAdapter.this.notifyDataSetInvalidated();
+                //Toast.makeText(_context.getApplicationContext(), "clicked:" + tvdisp.getText(),Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -72,7 +77,7 @@ public class MyAdapter extends BaseExpandableListAdapter  {
 
     @Override
     public int getChildrenCount(int groupPosition) {
-        return 1;
+        return count;
     }
 
     @Override
